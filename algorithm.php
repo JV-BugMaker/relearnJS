@@ -11,7 +11,7 @@ define("RATE2",2);
 $num = $monery/$price;
 $now_top = $now_body = $num;
 
-
+//简单的一个递归思路
 while ($now_body >=RATE2 || $now_top >=RATE) {
   # code...
       if($now_body>=RATE2){
