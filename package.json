@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "traceur": "^0.0.111"
+  }
+}
