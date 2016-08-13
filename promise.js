@@ -80,15 +80,20 @@ var p1 = new Promise(function (resolve, reject) {
     setTimeout(resolve, 500, 'P1');
 });
 var p2 = new Promise(function (resolve, reject) {
+    //setTimeout(resolve, 500, 'P2');
     setTimeout(resolve, 600, 'P2');
 });
 // 同时执行p1和p2，并在它们都完成后执行then:  但是这样会存在一个 如果发生网络异常 一个promise丢失的话
 // 那这个体验就不是很好 或者说 有个处理非常耗时 所以p1或者p2中只要有一个完成就先完成
+// 参数一 是传入的一个数组参数 返回的也是一个数组 结果数组
 Promise.all([p1, p2]).then(function (results) {
     console.log(results); // 获得一个Array: ['P1', 'P2']
 });
 
 //模拟的时候 可以让p1和p2 有时间差
+//
 Promise.race([p1, p2]).then(function (result) {
+    //race 参数和all 第一个都是一个promise对象组成的需要并行处理的数组
+    //但是这边就是返回 就是先处理之后的结果
     console.log(result); // 'P1'
 });
