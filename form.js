@@ -45,7 +45,8 @@ fileInput.addEventListener('change', function () {
                      '大小: ' + file.size + '<br>' +
                      '修改: ' + file.lastModifiedDate;
     if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/gif') {
-        alert('不是有效的图片文件!');
+        // alert('不是有效的图片文件!');
+        console.log("不是有效的图片文件");
         return;
     }
     // 读取文件:
@@ -53,8 +54,9 @@ fileInput.addEventListener('change', function () {
     reader.onload = function(e) {
         var
             data = e.target.result; // 'data:image/jpeg;base64,/9j/4AAQSk...(base64编码)...'
-        preview.style.backgroundImage = 'url(' + data + ')';
+            preview.style.backgroundImage = 'url(' + data + ')';
     };
     // 以DataURL的形式读取文件:
     reader.readAsDataURL(file);
 });
+//兼容性 支持H5浏览器   IE够呛
