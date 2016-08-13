@@ -54,7 +54,8 @@ request.send();
 //但是这并不是说跨域不能实现
 //通过在同源域名下架设一个代理服务器来转发，JavaScript负责把请求发送到代理服务器： nginx服务器来实现
 '/proxy?url=http://www.target.com'
-// JSONP通常以函数调用的形式返回，例如，返回JavaScript内容如下：
+//JSONP 的方式 我并不是很喜欢  嘻嘻
+
 
 
 //H5新特性 CORS
