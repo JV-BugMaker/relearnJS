@@ -83,3 +83,41 @@ function f() { console.log('I am outside!'); }
 (function () {
   f();
 }());
+
+
+//应该避免在函数在块级区域内申明函数 最多可以写成函数表达式
+{
+    let a = "secret";
+    let f = function(){
+      return a;
+    }
+}
+
+//并且在E6中let只能在块级区域内 才生效 不然会报错
+
+
+//const 声明一个只读常量  一旦声明  就不能改变
+const PI = 3.14;
+
+PI = 4; //就会报错
+
+//即表明const定义的常量之后 必须马上进行初始化
+//const 的作用域与let命令相同 只在声明所在的块级作用域内有效
+
+
+//如果想冻结对象  就应该采用object.freeze来冻结对象
+const foo = Object.freeze({});
+//不同模式下 最后一行表现是不一样的
+foo.prop = 123;//常规模式下是不起作用 但是在严格模式下是会报错的
+
+//除了把对象冻结 还需要把对象的属性也冻结
+var constantize = (obj)=>{
+    Object.freeze(obj);
+    Object.keys(obj).forEach((key,value)=>{
+        if(typeof value === "object"){
+          constantize(obj[key]);
+        }
+    });
+};
+
+//在node环境下的全局变量 可以使用 global来定义 如同window
