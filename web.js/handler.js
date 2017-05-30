@@ -63,5 +63,13 @@ var EventUtil = {
             return -event.detail * 40;
         }
     },
+    //key事件 
+    getCharCode:function(event){
+        if(typeof event.charCode == "number"){
+            return event.charCode;
+        }else{
+            return event.keyCode;
+        }
+    }
 
 }
