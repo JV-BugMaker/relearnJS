@@ -49,3 +49,62 @@ obj.aaa()();// window
 // 等同
 (obj.aaa())();// window
 
+
+console.log('=============================');
+
+var a = {
+	b: function() {
+		var that = this;
+		(function() {
+			console.log(that);
+		})();
+        //有瑕疵
+		console.log(this);
+	}
+};
+
+a.b();
+
+console.log('=============================');
+
+var a = {
+	b: function() {
+		(function() {
+            //this 向上查找   同名遮蔽
+			console.log(this);
+		})();
+		console.log(this);
+	}
+};
+
+(a.b = a.b)();
+
+
+var name = "The Window";
+var object = {
+　　　　name : "My Object",
+　　　　getNameFunc : function(){
+　　　　　　return function(){
+　　　　　　　　return this.name;
+　　　　　　};
+　　　　}
+};
+console.log(object.getNameFunc()());
+//the window 
+
+
+　var name = "The Window";
+　　var object = {
+　　　　name : "My Object",
+　　　　getNameFunc : function(){
+　　　　　　var that = this; //object == this
+　　　　　　return function(){
+　　　　　　　　return that.name;
+　　　　　　};
+　　　　}
+　　};
+console.log(object.getNameFunc()());
+//object
+
+
+//闭包的调用 必须要上下文  联系上下文 能对闭包中的this 理解通透
