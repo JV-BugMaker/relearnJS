@@ -11,5 +11,19 @@ var module = (function(){
     return object;
 })();
 
-console.log(module);
+// console.log(module);
 module.fn();
+
+
+//闭包中的this 问题
+
+var a = {
+	b: function() {
+		(function() {
+			console.log(this);// window
+		})();
+		console.log(this);// a对象
+	}
+};
+
+a.b();
